@@ -1,0 +1,16 @@
+{
+    "name": "WordPress",
+    "dockerComposeFile": "docker-compose.yml",
+    "service": "wordpress",
+    "workspaceFolder": "/var/www/html",
+    "remoteUser": "vscode",
+	"postCreateCommand": "if [ -f /var/www/html/setup.sh ]; then /var/www/html/setup.sh; fi",
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"xdebug.php-debug",
+				"bmewburn.vscode-intelephense-client"
+			]
+		}
+	}
+}

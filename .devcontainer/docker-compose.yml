@@ -1,0 +1,29 @@
+version: '3.8'
+services:
+  wordpress:
+    build: ./
+    ports:
+      - 8080:80
+    depends_on:
+      - db
+    environment:
+      - WORDPRESS_DB_HOST=db
+      - WORDPRESS_DB_USER=wp_user
+      - WORDPRESS_DB_PASSWORD=wp_pass
+      - WORDPRESS_DB_NAME=wordpress
+      - WORDPRESS_DEBUG=0
+    volumes:
+      - ../site/:/var/www/html
+    extra_hosts:
+      - host.docker.internal:host-gateway
+  db:
+    image: mariadb
+    environment:
+      - MYSQL_DATABASE=wordpress
+      - MYSQL_USER=wp_user
+      - MYSQL_PASSWORD=wp_pass
+      - MYSQL_RANDOM_ROOT_PASSWORD=1
+    volumes:
+      - data:/var/lib/mysql
+volumes:
+  data:
