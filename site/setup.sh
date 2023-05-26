@@ -45,4 +45,7 @@ if [ ! -f wp-config.php ]; then
     fi
 
     wp theme uninstall $(wp theme list --status=inactive --field=name)
+
+    wp language core update
+    wp language plugin update --all
 fi
